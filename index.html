@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Components</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <style>
+    </style>
+</head>
+<body>
+    <div class="draggable">Drag me</div>
+    <div class="droppable">Drop here</div>
+    <div class="resizable">Resize me</div>
+    <ul class="selectable">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <!-- jQuery and jQuery UI libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            // Initialize jQuery UI components
+            $(".draggable").draggable();
+            $(".droppable").droppable();
+            $(".resizable").resizable();
+            $(".selectable").selectable();
+        });
+    </script>
+</body>
+</html>
