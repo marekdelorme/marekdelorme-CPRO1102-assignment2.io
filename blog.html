@@ -4,40 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meown | A Cat Lover's Blog</title>
-    <!-- Include CSS for styling -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .page {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #blog {
+            display: block;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .post {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <!-- Blog Page -->
-    <div id="blog">
-        <h1>Do cats know their name?</h1>
-        <p></p>
-
+    <div id="blog" class="page">
+        <h1>Meown | A Cat Lover's Blog</h1>
+        <h2>Blog Features:</h2>
+        <ul>
+            <li><a href="#post1">Do cats know their name?</a></li>
+            <li><a href="#post2">Essential tips for healthy pets</a></li>
+            <li><a href="#post3">Understanding cat aggression</a></li>
+            <li><a href="#post4">Throwing a cat's birthday party</a></li>
+        </ul>
         <a href="#contact">Contact Us</a>
     </div>
 
-    <div id="contact">
-        <h1>Contact Us</h1>
-        <ul>
-            <li>Email: example@example.com</li>
-            <li>Mailing Address: 123 Street, City, Country</li>
-            <li>Phone: 123-456-7890</li>
-        </ul>
-
+    <!-- Post 1: Do cats know their name? -->
+    <div id="post1" class="page post">
+        <h3>Do cats know their name?</h3>
+        <p>Many cat owners wonder if their feline friends truly understand their names. While cats may not respond to their names as enthusiastically as dogs, research suggests they can recognize and distinguish their names from other words.</p>
+        <p>Some cats may exhibit subtle signs of recognition when called. Although they may not always respond, rest assured they are aware of their names!</p>
         <a href="#blog">Back to Blog</a>
     </div>
 
-    <!-- jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Post 2: Essential tips for healthy pets -->
+    <div id="post2" class="page post">
+        <h3>Essential tips for healthy pets</h3>
+        <p>Ensuring your pet's health and well-being is crucial for their happiness and longevity. Here are some essential tips:</p>
+        <ul>
+            <li>Provide a balanced diet tailored to your pet's nutritional needs.</li>
+            <li>Regularly exercise your pet to maintain a healthy weight.</li>
+            <li>Schedule routine veterinary check-ups and vaccinations.</li>
+            <li>Keep your pet's living environment clean and hazard-free.</li>
+            <li>Offer plenty of love, attention, and companionship.</li>
+        </ul>
+        <p>By following these tips, you can ensure your pet lives a happy and healthy life!</p>
+        <a href="#blog">Back to Blog</a>
+    </div>
+
+    <!-- Post 3: Understanding cat aggression -->
+    <div id="post3" class="page post">
+        <h3>Understanding cat aggression</h3>
+        <p>Aggressive behavior in cats can stem from various factors, including fear, pain, overstimulation, territoriality, and redirected aggression.</p>
+        <p>It's essential to observe your cat's behaviour and consult with a veterinarian or behaviorist to address any aggression issues.</p>
+        <a href="#blog">Back to Blog</a>
+    </div>
+
+    <!-- Post 4: Throwing a cat's birthday party -->
+    <div id="post4" class="page post">
+        <h3>Throwing a cat's birthday party</h3>
+        <p>Celebrate your cat's special day with a fun and memorable birthday party! Choose a cat-friendly venue, decorate with cat-themed decorations, and prepare special treats for your furry friend and their guests.</p>
+        <p>Don't forget to capture precious moments and shower your cat with love!</p>
+        <a href="#blog">Back to Blog</a>
+    </div>
+
+    <!-- Contact Us Page -->
+    <div id="contact" class="page">
+        <h2>Contact Us</h2>
+        <ul>
+            <li>Email: contact@meown.com</li>
+            <li>Mailing Address: 123 Cat Street, Meowtown</li>
+            <li>Phone: 123-456-7890</li>
+        </ul>
+        <a href="#blog">Back to Blog</a>
+    </div>
+
+    <!-- jQuery script for handling page transitions -->
     <script>
-        // jQuery to handle back button functionality
         $(document).ready(function(){
+            // Hide all pages except the blog page initially
+            $(".page").not("#blog").hide();
+
+            // Handle navigation between blog posts and back to blog
+            $("a[href^='#post']").click(function(){
+                var target = $(this).attr("href");
+                $(".page").not(target).hide();
+                $(target).show();
+            });
+
+            // Handle navigation to contact page
             $("a[href='#contact']").click(function(){
-                $("#blog").hide();
+                $(".page").hide();
                 $("#contact").show();
             });
+
+            // Handle navigation back to the blog from contact page
             $("a[href='#blog']").click(function(){
-                $("#contact").hide();
+                $(".page").hide();
                 $("#blog").show();
             });
         });
