@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Set character encoding and viewport for better compatibility -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the webpage -->
     <title>jQuery UI Components</title>
+    <!-- Link to jQuery UI CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <!-- Internal stylesheet (if any) can be added here -->
     <style>
     </style>
 </head>
 <body>
+    <!-- Elements for jQuery UI interaction -->
     <div class="draggable">Drag me</div>
     <div class="droppable">Drop here</div>
     <div class="resizable">Resize me</div>
@@ -18,17 +23,17 @@
         <li>Item 3</li>
     </ul>
 
-    <!-- jQuery and jQuery UI libraries -->
+    <!-- Include jQuery and jQuery UI libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     <script>
         $(document).ready(function(){
-            // Initialize jQuery UI components
-            $(".draggable").draggable();
-            $(".droppable").droppable();
-            $(".resizable").resizable();
-            $(".selectable").selectable();
+            // Initialize jQuery UI components after the document is loaded
+            $(".draggable").draggable(); // Make elements draggable
+            $(".droppable").droppable(); // Make elements droppable
+            $(".resizable").resizable(); // Make elements resizable
+            $(".selectable").selectable(); // Make elements selectable
         });
     </script>
 </body>
