@@ -9,6 +9,7 @@
     <!-- Link to jQuery UI CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <style>
+        /* CSS styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -21,30 +22,176 @@
         .component {
             margin-bottom: 40px;
         }
+        .component h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .ui-widget-content {
+            border: 1px solid #ccc;
+            background: #f6f6f6;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .selectable .ui-selecting {
+            background: #a6c9e2;
+        }
+        .selectable .ui-selected {
+            background: #96d1e9;
+            color: white;
+        }
+        .accordion .ui-accordion-header {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .accordion .ui-accordion-content {
+            padding: 10px;
+        }
+        .autocomplete {
+            width: calc(100% - 20px);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .datepicker {
+            width: calc(100% - 20px);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .slider-container {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .slider-label {
+            margin-right: 20px;
+        }
+        .slider {
+            width: calc(100% - 180px);
+            margin-right: 20px;
+        }
+        .slider-value {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .effects-buttons button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .effects-content {
+            width: 100%;
+            height: 100px;
+            background-color: #f6f6f6;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <!-- Elements for jQuery UI interaction -->
-    <div class="draggable">Drag me</div>
-    <div class="droppable">Drop here</div>
-    <div class="resizable">Resize me</div>
-    <ul class="selectable">
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-    </ul>
+    <div class="container">
+        <!-- Elements for jQuery UI interaction -->
+        <div class="component">
+            <h2>A. Interactions</h2>
+            <div class="draggable ui-widget-content">Drag me</div>
+            <div class="droppable ui-widget-content">Drop here</div>
+            <div class="resizable ui-widget-content">Resize me</div>
+            <ul class="selectable ui-widget-content">
+                <li class="ui-widget-content">Item 1</li>
+                <li class="ui-widget-content">Item 2</li>
+                <li class="ui-widget-content">Item 3</li>
+            </ul>
+        </div>
+        
+        <!-- Widgets -->
+        <div class="component">
+            <h2>B. Widgets</h2>
+            <div class="accordion">
+                <h3>Accordion Section 1</h3>
+                <div>Content for Accordion Section 1</div>
+                <h3>Accordion Section 2</h3>
+                <div>Content for Accordion Section 2</div>
+            </div>
+            <input type="text" class="autocomplete ui-widget-content" placeholder="Type here">
+            <input type="text" class="datepicker ui-widget-content" placeholder="Select a date">
+            <div class="slider-container">
+                <div class="slider"></div>
+                <div class="slider-value">25</div>
+            </div>
+        </div>
+        
+        <!-- Effects -->
+        <div class="component">
+            <h2>C. Effects</h2>
+            <div class="effects-buttons">
+                <button class="show-hide">Show/Hide</button>
+                <button class="explode">Explode</button>
+                <button class="fade-in-out">Fade In/Out</button>
+                <button class="color-animation">Animate Color</button>
+            </div>
+            <div class="effects-content ui-widget-content">Effects content</div>
+        </div>
+    </div>
 
-    <!-- Include jQuery and jQuery UI libraries -->
+    <!-- jQuery and jQuery UI libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     <script>
         $(document).ready(function(){
-            // Initialize jQuery UI components after the document is loaded
-            $(".draggable").draggable(); // Make elements draggable
-            $(".droppable").droppable(); // Make elements droppable
-            $(".resizable").resizable(); // Make elements resizable
-            $(".selectable").selectable(); // Make elements selectable
+            // Initialize Interactions
+            $(".draggable").draggable();
+            $(".droppable").droppable({
+                drop: function(event, ui) {
+                    $(this).addClass("ui-state-highlight").html("Dropped!");
+                }
+            });
+            $(".resizable").resizable();
+            $(".selectable").selectable();
+
+            // Initialize Widgets
+            $(".accordion").accordion();
+            $(".autocomplete").autocomplete({
+                source: ["apple", "banana", "cherry", "date", "grape", "lemon", "orange"]
+            });
+            $(".datepicker").datepicker();
+            $(".slider").slider({
+                min: 0,
+                max: 50,
+                value: 25,
+                slide: function(event, ui) {
+                    $(".slider-value").html(ui.value);
+                }
+            });
+
+            // Initialize Effects
+            $(".show-hide").click(function(){
+                $(".effects-content").toggle();
+            });
+            $(".explode").click(function(){
+                $(".effects-content").toggle("explode");
+            });
+            $(".fade-in-out").click(function(){
+                $(".effects-content").fadeToggle();
+            });
+            // toggle functionality for color animation
+            var animateColor = false;
+            $(".color-animation").click(function(){
+                if (animateColor) {
+                    $(".effects-content").stop().css({ backgroundColor: "", color: "" });
+                    animateColor = false;
+                } else {
+                    $(".effects-content").animate({
+                        backgroundColor: "yellow",
+                        color: "red"
+                    }, 1000 );
+                    animateColor = true;
+                }
+            });
         });
     </script>
 </body>
