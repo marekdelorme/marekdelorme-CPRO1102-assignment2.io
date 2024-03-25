@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meown | A Cat Lover's Blog</title>
+    <!-- Include CSS for styling -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Blog Page -->
+    <div id="blog">
+        <h1>Do cats know their name?</h1>
+        <p></p>
+
+        <a href="#contact">Contact Us</a>
+    </div>
+
+    <div id="contact">
+        <h1>Contact Us</h1>
+        <ul>
+            <li>Email: example@example.com</li>
+            <li>Mailing Address: 123 Street, City, Country</li>
+            <li>Phone: 123-456-7890</li>
+        </ul>
+
+        <a href="#blog">Back to Blog</a>
+    </div>
+
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // jQuery to handle back button functionality
+        $(document).ready(function(){
+            $("a[href='#contact']").click(function(){
+                $("#blog").hide();
+                $("#contact").show();
+            });
+            $("a[href='#blog']").click(function(){
+                $("#contact").hide();
+                $("#blog").show();
+            });
+        });
+    </script>
+</body>
+</html>
